@@ -1,9 +1,11 @@
+import Feed from "../(user)/profile/feed/page"
+
  
 
 const page = () => {
   return (
     <div>
-      home page
+     <Feed/>
     </div>
   )
 }
