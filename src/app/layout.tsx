@@ -1,15 +1,12 @@
 import "@/styles/globals.css";
 // import "../styles/globals.css"
 import { Metadata, Viewport } from "next";
- 
+
 import clsx from "clsx";
 
 import { Providers } from "./providers";
 import { fontSans } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
-
- 
- 
 
 export const metadata: Metadata = {
   title: {
@@ -21,9 +18,6 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
 };
-
-
- 
 
 export const viewport: Viewport = {
   themeColor: [
@@ -42,12 +36,12 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-white text-black font-sans antialiased",
-          fontSans.variable,
+          "min-h-screen     font-sans antialiased",
+          fontSans.variable
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-         {children}
+          {children}
         </Providers>
       </body>
     </html>

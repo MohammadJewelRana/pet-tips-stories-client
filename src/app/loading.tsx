@@ -1,8 +1,11 @@
+import Loading from "@/components/UI/Loading";
+
  
 const loading = () => {
   return (
       <div>
-          <h1 className="text-4xl ">Loading .....</h1>
+        loading ...
+       <Loading/>
       </div>
   );
 };
