@@ -8,6 +8,8 @@ import { Providers } from "./providers";
 import { fontSans } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
 
+
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -39,7 +41,7 @@ export default function RootLayout({
         //   "min-h-screen  bg-[#191A1F]   font-sans antialiased",
         //   fontSans.variable
         // )}
-        className="bg-[#191A1F] h-screen z-10"
+        className="bg-[#191A1F] h-screen z-10  "
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
         
