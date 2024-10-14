@@ -1,51 +1,64 @@
-// "use server";
+"use server";
 
-// import axiosInstance from "@/src/lib/AxiosInstance";
-// import { jwtDecode } from "jwt-decode";
-// import { cookies } from "next/headers";
-// import { FieldValues } from "react-hook-form";
+import axiosInstance from "@/lib/AxiosInstance";
+import { jwtDecode } from "jwt-decode";
+import { cookies } from "next/headers";
+import { FieldValues } from "react-hook-form";
 
- 
+export const registerUser = async (userData: FieldValues) => {
+  try {
+    const { data } = await axiosInstance.post("/user/create-user", userData);
+    console.log(data);
 
-// export const loginUser = async (userData: FieldValues) => {
-//   try {
-//     const { data } = await axiosInstance.post("/auth/login", userData);
+    return data;
+  } catch (error: any) {
+    console.error("Error during user registration:", error);
 
-//     //cookies set
-//     if (data.success) {
-//       cookies().set("accessToken", data?.data?.accessToken);
-//       cookies().set("refreshToken", data?.data?.refreshToken);
-//     }
+    throw new Error(error.response?.data?.message || "Failed to register user");
+  }
+};
 
-//     return data;
-//   } catch (error: any) {
-//     throw new Error(error);
-//   }
-// };
+export const loginUser = async (userData: FieldValues) => {
+  try {
+    const { data } = await axiosInstance.post("/auth/login", userData);
+    console.log(data);
 
-// export const logout = () => {
-//   cookies().delete("accessToken");
-//   cookies().delete("refreshToken");
-// };
+    //cookies set
+    if (data.success) {
+      cookies().set("accessToken", data?.data?.accessToken);
+      cookies().set("refreshToken", data?.data?.refreshToken);
+    }
 
-// export const getCurrentUser = async () => {
-//   const accessToken = cookies().get("accessToken")?.value;
+    return data;
+  } catch (error: any) {
+    // throw new Error(error);
+    console.error("Error during user login:", error);
+    throw new Error(error.response?.data?.message || "Failed to  login user");
+  }
+};
 
-//   let decodedToken = null;
+export const logout = () => {
+  cookies().delete("accessToken");
+  cookies().delete("refreshToken");
+};
 
-//   if (accessToken) {
-//     decodedToken = await jwtDecode(accessToken);
+export const getCurrentUser = async () => {
+  const accessToken = cookies().get("accessToken")?.value;
 
-//     return {
-//       _id: decodedToken._id,
-//       name: decodedToken.name,
-//       email: decodedToken.email,
-//       mobileNumber: decodedToken.mobileNumber,
-//       role: decodedToken.role,
-//       status: decodedToken.status,
-//       profilePhoto: decodedToken.profilePhoto,
-//     };
-//   }
+  let decodedToken = null;
 
-//   return decodedToken;
-// };
+  if (accessToken) {
+    decodedToken = await jwtDecode(accessToken);
+    console.log(decodedToken);
+
+    return {
+      userId: decodedToken.userId,
+      name: decodedToken.name,
+      email: decodedToken.email,
+
+      role: decodedToken.role,
+    };
+  }
+
+  return decodedToken;
+};

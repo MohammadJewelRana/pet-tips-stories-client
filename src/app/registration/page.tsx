@@ -1,17 +1,30 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import FXDatePicker from "@/components/form/FXDatePicker";
 import FXForm from "@/components/form/FXForm";
 import FXInput from "@/components/form/FXInput";
 import FXSelect from "@/components/form/FXSelect";
+import { useUserRegistration } from "@/hooks/auth.hook";
+import dateToISO from "@/utils/dateToIso";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
 import React from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const page = () => {
+  const { mutate: handleUserRegistration, isPending } = useUserRegistration();
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    // console.log(data);
+    const userData = {
+      ...data,
+      dob: dateToISO(data.dob),
+    };
+    // console.log(userData);
+
+    handleUserRegistration(userData);
+
     // handleUserLogin(data);
     // userLoading(true);
   };

@@ -41,7 +41,8 @@ const PostCard = ({ post }: { post: any }) => {
     postImage,
   } = post || undefined;
   // console.log(post);
-  const { email, fullName } = userInfo || undefined;
+  // const { email, fullName } = userInfo || undefined;
+
   const { upVote, downVote } = vote[0];
 
   const [isExpanded, setIsExpanded] = useState(false);
@@ -72,7 +73,7 @@ const PostCard = ({ post }: { post: any }) => {
             <div className="">
               <div className="flex">
                 <h1 className="text-[16px] font-semibold flex gap-4 items-center justify-center">
-                  {fullName}
+                  {'jewel'}
                 </h1>
                 <p className="text-[14px] text-gray-400  mt-1 ml-4 ">
                   9 hour ago
