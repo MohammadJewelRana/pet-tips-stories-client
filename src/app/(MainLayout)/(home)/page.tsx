@@ -1,13 +1,11 @@
-import Feed from "../(user)/profile/feed/page"
-
- 
+import Feed from "../(user)/profile/feed/page";
 
 const page = () => {
   return (
     <div>
-     <Feed/>
+      <Feed />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

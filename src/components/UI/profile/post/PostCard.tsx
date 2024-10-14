@@ -3,6 +3,8 @@
 "use client";
 
 import Image from "next/image";
+ 
+import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 
 import {
   FaCheck,
@@ -11,10 +13,11 @@ import {
   FaPaperPlane,
   FaPen,
   FaShare,
+  FaThumbsDown,
   FaThumbsUp,
 } from "react-icons/fa";
 
-import profileImage from "@/assets/profile/profilePicture/dp.jpg";
+ 
 import img1 from "@/assets/profile/post/1.jpg";
 import img2 from "@/assets/profile/post/2.jpg";
 import img3 from "@/assets/profile/post/3.jpg";
@@ -23,14 +26,25 @@ import ImageGallery from "./ImageGallery";
 import Link from "next/link";
 import { useState } from "react";
 
+
 const PostCard = ({ post }: { post: any }) => {
-  const { id, name, photoArray, likes, share, details } = post || undefined;
+  // const { id, name, photoArray, likes, share, details } = post || undefined;
+
+  const {_id,userId:userInfo,category,vote,comment,shareCount,details,badges,pricing,postImage}=post || undefined;
+  console.log(post);
+  const {email,fullName}=userInfo || undefined;
+  const {upVote,downVote}=vote[0];
+ 
+  
+  
 
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
   };
+
+ const photoArray= [img1, img2, img3]
 
   return (
     <div>
@@ -52,12 +66,12 @@ const PostCard = ({ post }: { post: any }) => {
             <div className="">
               <div className="flex">
                 <h1 className="text-[16px] font-semibold flex gap-4 items-center justify-center">
-                  {name}
+                  {fullName}
                 </h1>
                 <p className="text-[14px] text-gray-400  mt-1 ml-4 ">9 hour ago</p>
               </div>
               <div className="  w-16 text-center rounded-md text-[14px] mt-1 px-4 bg-red-400 opacity-85">
-                <span className="text-white ">Tips</span>
+                <span className="text-white ">{category}</span>
               </div>
             </div>
           </div>
@@ -96,8 +110,9 @@ const PostCard = ({ post }: { post: any }) => {
             </span>
           )}
         </div>
-        <div>
-          <ImageGallery images={photoArray} />
+
+        <div className="">
+          {/* <ImageGallery images={photoArray} /> */}
         </div>
 
         {/* like comment share  */}
@@ -105,8 +120,13 @@ const PostCard = ({ post }: { post: any }) => {
           <div className="flex items-center gap-6 flex-1 overflow-hidden whitespace-nowrap">
             <div className="flex items-center text-blue-600">
               <FaThumbsUp className="text-gray-500" />
-              <span className="ml-1">Liked ({likes})</span>
+              <span className="ml-1"> ({upVote?.length})</span>
             </div>
+            <div className="flex items-center text-blue-600">
+              <FaThumbsDown className="text-gray-500" />
+              <span className="ml-1"> ({downVote?.length})</span>
+            </div>
+
             <div className="flex items-center">
               <FaComment className="text-gray-500" />
               <span className="ml-1">Comments (12)</span>
@@ -114,7 +134,8 @@ const PostCard = ({ post }: { post: any }) => {
           </div>
           <div className="flex items-center whitespace-nowrap">
             <FaShare className="text-gray-500" />
-            <span className="ml-1">Share ({share})</span>
+            {/* <span className="ml-1">Share ({share})</span> */}
+            <span className="ml-1">Share ({'5'})</span>
           </div>
         </div>
         {/* add a comment  */}
