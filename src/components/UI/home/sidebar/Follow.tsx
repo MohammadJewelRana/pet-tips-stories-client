@@ -1,66 +1,12 @@
 import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 import Image from "next/image";
-import { FaPlus, FaUserPlus } from "react-icons/fa";
+import { FaEye, FaPlus, FaUserPlus } from "react-icons/fa";
 
-const Follow = () => {
-  const followData = [
-    {
-      id: 1,
-      name: "jewel rana",
-      img: profileImage,
-      profession: "web developer",
-      followingStatus: true,
-    },
-    {
-      id: 2,
-      name: "jewel rana",
-      img: profileImage,
-      profession: " developer",
-      followingStatus: false,
-    },
-    {
-      id: 3,
-      name: "jewel rana",
-      img: profileImage,
-      profession: "Software developer",
-      followingStatus: false,
-    },
-    {
-      id: 4,
-      name: "jewel rana",
-      img: profileImage,
-      profession: "web developer",
-      followingStatus: true,
-    },
-    {
-      id: 5,
-      name: "jewel rana",
-      img: profileImage,
-      profession: "web developer",
-      followingStatus: false,
-    },
-    {
-      id: 6,
-      name: "jewel rana",
-      img: profileImage,
-      profession: "Software developer",
-      followingStatus: false,
-    },
-    {
-      id: 7,
-      name: "jewel rana",
-      img: profileImage,
-      profession: "web developer",
-      followingStatus: true,
-    },
-  ];
-
+const Follow = ({ followData, title, status }:{followData:[],title:string,status:string}) => {
   return (
     <div className="bg-black p-4">
       <div>
-        <h1 className="text-2xl font-bold capitalize mt-4 mb-8">
-          Who to follow
-        </h1>
+        <h1 className="text-2xl font-bold capitalize mt-4 mb-8">{title}</h1>
       </div>
 
       <div>
@@ -79,27 +25,40 @@ const Follow = () => {
                 </div>
 
                 <div className="capitalize">
-                  <h1 className="text-[16px] font-semibold  ">{item.name}</h1>
+                  <h1 className="text-[16px] font-semibold  ">{item?.name}</h1>
                   <p className="text-[12px] text-gray-400">
                     {item?.profession}
                   </p>
                 </div>
               </div>
 
-              {item?.followingStatus === true ? (
-                <div
-                  className="text-md bg-blue-600 text-white p-2 rounded-full cursor-pointer"
-                  title="UnFollow"
-                >
-                  <FaUserPlus />
-                </div>
+              {status === "followers" ? (
+                <>
+                  <div
+                    className="text-md bg-blue-600 text-white p-2 rounded-full cursor-pointer"
+                    title="View"
+                  >
+                    <FaEye />
+                  </div>
+                </>
               ) : (
-                <div
-                  className="text-md bg-slate-700 text-white p-2 rounded-full cursor-pointer"
-                  title="Follow"
-                >
-                  <FaPlus />
-                </div>
+                <>
+                  {item?.followingStatus === true ? (
+                    <div
+                      className="text-md bg-blue-600 text-white p-2 rounded-full cursor-pointer"
+                      title="UnFollow"
+                    >
+                      <FaUserPlus />
+                    </div>
+                  ) : (
+                    <div
+                      className="text-md bg-slate-700 text-white p-2 rounded-full cursor-pointer"
+                      title="Follow"
+                    >
+                      <FaPlus />
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </>

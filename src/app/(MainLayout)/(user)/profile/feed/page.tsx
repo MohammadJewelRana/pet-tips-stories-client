@@ -1,5 +1,6 @@
 "use client";
 
+import { useUser } from "@/app/context/user.provider";
 import PostCard from "@/components/UI/profile/post/PostCard";
 import { useGetAllPost } from "@/hooks/post.hook";
 
@@ -10,10 +11,14 @@ const Feed = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   const postData = data?.data;
-  // console.log(data);
+ 
 
-  // console.log(postData);
+  const {user}=useUser();
+  console.log(user);
+  
 
+  
+  
   return (
     <div className=" py-4">
       {postData?.map((post, index) => <PostCard post={post} key={index} />)}
