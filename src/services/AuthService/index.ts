@@ -53,7 +53,7 @@ export const getCurrentUser = async () => {
 
   if (accessToken) {
     decodedToken = await jwtDecode(accessToken);
-    console.log(decodedToken);
+    // console.log(decodedToken);
 
     return {
       userId: decodedToken.userId,
@@ -70,7 +70,13 @@ export const getCurrentUser = async () => {
 
 //get full user details
 export const getUserDetails = async (id: string) => {
-  const res = await fetch(`${envConfig.baseApi}/user/${id}`);
+ 
+  if (!id) {
+    throw new Error("User ID is missing");
+  }
+  
+  // const res = await fetch(`${envConfig.baseApi}/user/${id}`);
+  const res = await fetch(`http://localhost:5000/api/user/${id}`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");

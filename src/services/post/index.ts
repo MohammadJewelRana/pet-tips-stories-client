@@ -44,6 +44,22 @@ export const getAllPost = async () => {
   return res.json();
 };
 
+export const getAllSinglePost = async (id: string) => {
+  let fetchOptions = {};
+
+  fetchOptions = {
+    cache: "no-store",
+  };
+
+  const res = await fetch(`${envConfig.baseApi}/post/all/${id}`, fetchOptions);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+};
+
 // export const getAllPost = async () => {
 //     const fetchOptions = {
 //       cache: "no-store",

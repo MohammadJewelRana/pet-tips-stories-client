@@ -19,8 +19,7 @@ import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 import img1 from "@/assets/profile/post/1.jpg";
 import img2 from "@/assets/profile/post/2.jpg";
 import img3 from "@/assets/profile/post/3.jpg";
-
-
+import ImageGallery from "./ImageGallery";
 
 const PostCard = ({ post }: { post: any }) => {
   // const { id, name, photoArray, likes, share, details } = post || undefined;
@@ -39,6 +38,7 @@ const PostCard = ({ post }: { post: any }) => {
   } = post || undefined;
   // console.log(post);
   // const { email, fullName } = userInfo || undefined;
+  console.log(userInfo);
 
   const { upVote, downVote } = vote[0];
 
@@ -47,8 +47,6 @@ const PostCard = ({ post }: { post: any }) => {
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
   };
-
-  const photoArray = [img1, img2, img3];
 
   return (
     <div>
@@ -63,14 +61,14 @@ const PostCard = ({ post }: { post: any }) => {
                 alt="profile image"
                 className="rounded-full h-12 w-12 border-2 border-blue-500 p-1"
                 height={200}
-                src={profileImage}
+                src={userInfo?.profileImage}
                 width={200}
               />
             </div>
             <div className="">
               <div className="flex">
                 <h1 className="text-[16px] font-semibold flex gap-4 items-center justify-center">
-                  {'jewel'}
+                  {userInfo?.fullName}
                 </h1>
                 <p className="text-[14px] text-gray-400  mt-1 ml-4 ">
                   9 hour ago
@@ -117,7 +115,9 @@ const PostCard = ({ post }: { post: any }) => {
           )}
         </div>
 
-        <div className="">{/* <ImageGallery images={photoArray} /> */}</div>
+        <div className="">
+          <ImageGallery images={postImage} />
+        </div>
 
         {/* like comment share  */}
         <div className="flex justify-between items-center gap-4 text-gray-400 text-[14px] my-4 flex-wrap">

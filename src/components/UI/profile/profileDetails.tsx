@@ -16,10 +16,18 @@ import { useUser } from "@/app/context/user.provider";
 
 const ProfileDetails = () => {
 
-  const {userDetails}=useUser();
+  // const  {userDetailData}=useUser();
 
-  console.log(userDetails);
+  // console.log(userDetailData);
   
+  // const userData=userDetails?.data;
+  // console.log(userData);
+
+  const {userDetails}=useUser();
+  
+
+  
+   
 
 
   return (
@@ -102,12 +110,12 @@ const ProfileDetails = () => {
 
       <div className="bg-black px-4">
         <div className="text-gray-400 font-semibold  flex gap-4 py-4 lex flex-wrap justify-center md:justify-start">
-          <Link href="/profile">Feed </Link>
-          <Link href="/profile/media">Media </Link>
-          <Link href="/profile/connections">Videos </Link>
-          <Link href="/profile/about">About </Link>
-          <Link href="/profile">Connections </Link>
-          <Link href="/profile">Activity </Link>
+          <Link href="/userProfile/215/feed">Feed </Link>
+          <Link href="/userProfile/media">Media </Link>
+          <Link href="/userProfile/connections">Videos </Link>
+          <Link href="/userProfile/about">About </Link>
+          <Link href="/userProfile">Connections </Link>
+          <Link href="/userProfile">Activity </Link>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
- 
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -14,10 +14,12 @@ import {
 import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 import bgImage from "@/assets/profile/post/4.jpg";
 import Divider from "@/components/UI/Divider";
+import { useUser } from "@/app/context/user.provider";
+import Loading from "../../Loading";
 
 const LeftSideBar = () => {
   const links = [
-    { id: 1, icon: <FaHome />, value: "feed", path: "/profile" }, // Home icon for feed
+    { id: 1, icon: <FaHome />, value: "Profile", path: "/profile" },
     {
       id: 2,
       icon: <FaUserFriends />, // User friends icon for connections
@@ -49,6 +51,12 @@ const LeftSideBar = () => {
       path: "/profile/settings",
     },
   ];
+
+  const { user,isLoading } = useUser();
+
+  if(isLoading){
+    return <Loading/>
+  }
 
   return (
     <div>
@@ -110,7 +118,8 @@ const LeftSideBar = () => {
       {/* all link  */}
       <div className="my-8">
         {links?.map((item, index) => (
-          <Link key={index} href={item?.path}>
+          <Link key={index} href={`/userProfile/${user?.userId}`}>  
+          {/* <Link key={index} href={`${item?.path}/${user?.userId}`}> */}
             <div className="flex gap-4 mb-4 text-xl  font-bold  cursor-pointer hover:bg-blue-600 duration-300 hover:transition-all p-2">
               <p className="mt-1">{item?.icon}</p>
               <h1 className="capitalize">{item?.value}</h1>

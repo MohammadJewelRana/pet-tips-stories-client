@@ -35,6 +35,10 @@ export const useUserLogin = () => {
 };
 
 export const useGetUserDetails = (id: string) => {
+  // if (!id) {
+  //   throw new Error("User ID is missing");
+  // }
+
   return useQuery({
     queryKey: ["GET_USER_DETAILS"],
     queryFn: async () => await getUserDetails(id),
