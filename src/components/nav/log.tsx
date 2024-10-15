@@ -1,15 +1,12 @@
 "use client";
 
-import { Button } from "@nextui-org/button";
 import React from "react";
-import { HeartFilledIcon } from "../icons";
-import { siteConfig } from "@/config/site";
 import Link from "next/link";
+import { toast } from "sonner";
+import { usePathname, useRouter } from "next/navigation";
+
 import { useUser } from "@/app/context/user.provider";
 import { logout } from "@/services/AuthService";
-import { toast } from "sonner";
- 
-import { usePathname, useRouter } from "next/navigation";
 import { protectedRoutes } from "@/constant";
 
 const Log = () => {

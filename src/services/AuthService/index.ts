@@ -1,13 +1,16 @@
 "use server";
 
-import axiosInstance from "@/lib/AxiosInstance";
 import { jwtDecode } from "jwt-decode";
 import { cookies } from "next/headers";
 import { FieldValues } from "react-hook-form";
 
+import axiosInstance from "@/lib/AxiosInstance";
+import envConfig from "@/config/envConfig";
+
 export const registerUser = async (userData: FieldValues) => {
   try {
     const { data } = await axiosInstance.post("/user/create-user", userData);
+
     console.log(data);
 
     return data;
@@ -21,6 +24,7 @@ export const registerUser = async (userData: FieldValues) => {
 export const loginUser = async (userData: FieldValues) => {
   try {
     const { data } = await axiosInstance.post("/auth/login", userData);
+
     console.log(data);
 
     //cookies set
@@ -61,4 +65,16 @@ export const getCurrentUser = async () => {
   }
 
   return decodedToken;
+};
+
+
+//get full user details
+export const getUserDetails = async (id: string) => {
+  const res = await fetch(`${envConfig.baseApi}/user/${id}`);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
 };

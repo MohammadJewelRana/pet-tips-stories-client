@@ -1,8 +1,5 @@
  
 
-import profileImage from "@/assets/profile/profilePicture/dp.jpg";
-import bgImage from "@/assets/profile/post/4.jpg";
-import Divider from "@/components/UI/Divider";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -14,9 +11,13 @@ import {
   FaUsers,
 } from "react-icons/fa";
 
+import profileImage from "@/assets/profile/profilePicture/dp.jpg";
+import bgImage from "@/assets/profile/post/4.jpg";
+import Divider from "@/components/UI/Divider";
+
 const LeftSideBar = () => {
   const links = [
-    { id: 1, icon: <FaHome />, value: "feed", path: "/profile/feed" }, // Home icon for feed
+    { id: 1, icon: <FaHome />, value: "feed", path: "/profile" }, // Home icon for feed
     {
       id: 2,
       icon: <FaUserFriends />, // User friends icon for connections
@@ -53,21 +54,21 @@ const LeftSideBar = () => {
     <div>
       <div className="  ">
         <Image
-          src={bgImage}
+          alt="profile"
           className="w-full object-cover"
           height={200}
+          src={bgImage}
           width={200}
-          alt="profile"
         />
       </div>
       <div className="flex flex-col items-center justify-center gap-4   -mt-16">
         <div>
           <Image
-            className="  h-24 w-24 border-2 border-white p-1"
-            src={profileImage}
-            height={200}
-            width={200}
             alt="profile image"
+            className="  h-24 w-24 border-2 border-white p-1"
+            height={200}
+            src={profileImage}
+            width={200}
           />
         </div>
         <div className="text-center">
@@ -79,7 +80,7 @@ const LeftSideBar = () => {
         <div className="max-w-[280px] text-gray-400 text-xl text-center">
           {" "}
           <p>
-            I'd love to change the world, but they won’t give me the source
+            I&apos;d love to change the world, but they won’t give me the source
             code.
           </p>
         </div>
@@ -109,7 +110,7 @@ const LeftSideBar = () => {
       {/* all link  */}
       <div className="my-8">
         {links?.map((item, index) => (
-          <Link href={item?.path} key={index}>
+          <Link key={index} href={item?.path}>
             <div className="flex gap-4 mb-4 text-xl  font-bold  cursor-pointer hover:bg-blue-600 duration-300 hover:transition-all p-2">
               <p className="mt-1">{item?.icon}</p>
               <h1 className="capitalize">{item?.value}</h1>

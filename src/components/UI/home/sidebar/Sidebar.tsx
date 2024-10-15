@@ -1,6 +1,7 @@
+import Follow from "./Follow";
+
 import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 
-import Follow from "./Follow";
 
 const Sidebar = () => {
   const followData = [
@@ -59,16 +60,16 @@ const Sidebar = () => {
     <div className="bg-black p-4">
       <div className="mt-4">
         <Follow
-          title={"Following"}
           followData={followData}
           status={"following"}
+          title={"Following"}
         />
       </div>
 
       <Follow
-        title={"Followers"}
         followData={followData}
         status={"followers"}
+        title={"Followers"}
       />
     </div>
   );

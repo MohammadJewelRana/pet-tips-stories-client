@@ -1,9 +1,9 @@
 import Image from "next/image";
+import { FaSms, FaTrash } from "react-icons/fa";
 
 import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 import profileImage1 from "@/assets/profile/profilePicture/dp2.jpg";
 import profileImage2 from "@/assets/profile/profilePicture/dp3.jpg";
-import { FaSms, FaTrash } from "react-icons/fa";
 
 const SFriends = () => {
   const photos = [
@@ -48,11 +48,11 @@ const SFriends = () => {
           >
             <div>
               <Image
-                className=" rounded-full  object-cover h-12 w-12  "
-                src={friend.img}
-                height={200}
-                width={200}
                 alt="profile image"
+                className=" rounded-full  object-cover h-12 w-12  "
+                height={200}
+                src={friend.img}
+                width={200}
               />
             </div>
             <div>

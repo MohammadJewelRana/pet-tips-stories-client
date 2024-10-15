@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCalendar, FaHeart, FaTimes, FaVoicemail } from "react-icons/fa";
+import { FaCalendar, FaHeart, FaVoicemail } from "react-icons/fa";
 
 const SAbout = () => {
   return (

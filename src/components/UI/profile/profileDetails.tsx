@@ -1,5 +1,6 @@
-import Image from "next/image";
+"use client"
 
+import Image from "next/image";
 import {
   FaCheck,
   FaJoint,
@@ -7,20 +8,29 @@ import {
   FaPen,
   FaSortNumericUpAlt,
 } from "react-icons/fa";
-import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 import Link from "next/link";
+
+import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 import bgImage from "@/assets/profile/post/4.jpg";
+import { useUser } from "@/app/context/user.provider";
 
 const ProfileDetails = () => {
+
+  const {userDetails}=useUser();
+
+  console.log(userDetails);
+  
+
+
   return (
     <div>
       <div className="  ">
         <Image
-          src={bgImage}
+          alt="profile"
           className="w-full h-44 object-cover"
           height={200}
+          src={bgImage}
           width={200}
-          alt="profile"
         />
       </div>
 
@@ -29,11 +39,11 @@ const ProfileDetails = () => {
           <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-6 flex-wrap">
             <div>
               <Image
-                className="rounded-full h-36 w-36 border-4"
-                src={profileImage}
-                height={200}
-                width={200}
                 alt="profile image"
+                className="rounded-full h-36 w-36 border-4"
+                height={200}
+                src={profileImage}
+                width={200}
               />
             </div>
             <div className=" mt-10">
@@ -92,7 +102,7 @@ const ProfileDetails = () => {
 
       <div className="bg-black px-4">
         <div className="text-gray-400 font-semibold  flex gap-4 py-4 lex flex-wrap justify-center md:justify-start">
-          <Link href="/profile/feed">Feed </Link>
+          <Link href="/profile">Feed </Link>
           <Link href="/profile/media">Media </Link>
           <Link href="/profile/connections">Videos </Link>
           <Link href="/profile/about">About </Link>

@@ -8,7 +8,6 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-import { Button } from "@nextui-org/button";
 import { Kbd } from "@nextui-org/kbd";
 import { Link } from "@nextui-org/link";
 import { Input } from "@nextui-org/input";
@@ -17,12 +16,9 @@ import NextLink from "next/link";
 import clsx from "clsx";
 
 import {
-  DiscordIcon,
   GithubIcon,
-  HeartFilledIcon,
   Logo,
   SearchIcon,
-  TwitterIcon,
 } from "../icons";
 
 import { ThemeSwitch } from "../theme-switch";

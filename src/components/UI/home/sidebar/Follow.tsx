@@ -1,6 +1,7 @@
-import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 import Image from "next/image";
 import { FaEye, FaPlus, FaUserPlus } from "react-icons/fa";
+
+import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 
 const Follow = ({ followData, title, status }:{followData:[],title:string,status:string}) => {
   return (
@@ -16,11 +17,11 @@ const Follow = ({ followData, title, status }:{followData:[],title:string,status
               <div className="flex   items-center justify-center  gap-4 ">
                 <div>
                   <Image
-                    className="rounded-full h-12 w-12 border-2 border-blue-500 p-1"
-                    src={profileImage}
-                    height={200}
-                    width={200}
                     alt="profile image"
+                    className="rounded-full h-12 w-12 border-2 border-blue-500 p-1"
+                    height={200}
+                    src={profileImage}
+                    width={200}
                   />
                 </div>
 

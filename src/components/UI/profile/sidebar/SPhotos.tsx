@@ -28,11 +28,11 @@ const SPhotos = () => {
           {photos?.slice(0, 2).map((item, index) => (
             <div key={index}>
               <Image
-                className=" rounded-md object-cover h-32  "
-                src={item}
-                height={200}
-                width={200}
                 alt="profile image"
+                className=" rounded-md object-cover h-32  "
+                height={200}
+                src={item}
+                width={200}
               />
             </div>
           ))}
@@ -42,11 +42,11 @@ const SPhotos = () => {
             {photos?.slice(2, 5).map((item, index) => (
               <div key={index}>
                 <Image
-                  className=" rounded-md  object-cover h-32 "
-                  src={item}
-                  height={200}
-                  width={200}
                   alt="profile image"
+                  className=" rounded-md  object-cover h-32 "
+                  height={200}
+                  src={item}
+                  width={200}
                 />
               </div>
             ))}

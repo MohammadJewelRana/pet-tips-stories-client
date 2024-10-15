@@ -1,15 +1,17 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
-import FXForm from "@/components/form/FXForm";
-import FXInput from "@/components/form/FXInput";
-import { useUserLogin } from "@/hooks/auth.hook";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+
 import { useUser } from "../context/user.provider";
+
+import { useUserLogin } from "@/hooks/auth.hook";
+import FXInput from "@/components/form/FXInput";
+import FXForm from "@/components/form/FXForm";
 import Loading from "@/components/UI/Loading";
 
 const page = () => {
@@ -18,6 +20,7 @@ const page = () => {
 
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect"); //get redirect path
+
   console.log(redirect);
   
   const router = useRouter();

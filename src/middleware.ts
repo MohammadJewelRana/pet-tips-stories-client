@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
+
 import { getCurrentUser } from "./services/AuthService";
 
 const AuthRoutes = ["/login", "/register"];
@@ -25,6 +26,7 @@ export async function middleware(request: NextRequest) {
         new URL(`/login?redirect=${pathname}`, request.url)
       );
     }
+
     return NextResponse.next(); // Allow access to login and register
   }
 

@@ -3,27 +3,24 @@
 "use client";
 
 import Image from "next/image";
-
-import profileImage from "@/assets/profile/profilePicture/dp.jpg";
-
 import {
-  FaCheck,
   FaComment,
   FaEllipsisV,
   FaPaperPlane,
-  FaPen,
   FaShare,
   FaThumbsDown,
   FaThumbsUp,
 } from "react-icons/fa";
+import { useState } from "react";
 
+import Divider from "../../Divider";
+
+import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 import img1 from "@/assets/profile/post/1.jpg";
 import img2 from "@/assets/profile/post/2.jpg";
 import img3 from "@/assets/profile/post/3.jpg";
-import Divider from "../../Divider";
-import ImageGallery from "./ImageGallery";
-import Link from "next/link";
-import { useState } from "react";
+
+
 
 const PostCard = ({ post }: { post: any }) => {
   // const { id, name, photoArray, likes, share, details } = post || undefined;
@@ -63,11 +60,11 @@ const PostCard = ({ post }: { post: any }) => {
           <div className="flex   items-center justify-center  gap-4 ">
             <div>
               <Image
-                className="rounded-full h-12 w-12 border-2 border-blue-500 p-1"
-                src={profileImage}
-                height={200}
-                width={200}
                 alt="profile image"
+                className="rounded-full h-12 w-12 border-2 border-blue-500 p-1"
+                height={200}
+                src={profileImage}
+                width={200}
               />
             </div>
             <div className="">
@@ -149,11 +146,11 @@ const PostCard = ({ post }: { post: any }) => {
         <div className="flex items-center space-x-3">
           <div>
             <Image
-              className="rounded-full h-12 w-12 p-1"
-              src={profileImage}
-              height={200}
-              width={200}
               alt="profile image"
+              className="rounded-full h-12 w-12 p-1"
+              height={200}
+              src={profileImage}
+              width={200}
             />
           </div>
           <div className="flex items-center w-full">
@@ -161,8 +158,8 @@ const PostCard = ({ post }: { post: any }) => {
               type="text"
               //   value={comment}
               //   onChange={handleCommentChange}
-              placeholder="Add a comment..."
               className="flex-grow  border-gray-400 rounded-md p-2 text-gray-700"
+              placeholder="Add a comment..."
             />
             <button
               //   onClick={handleSendComment}

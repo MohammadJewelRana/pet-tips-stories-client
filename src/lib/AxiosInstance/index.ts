@@ -1,6 +1,6 @@
-import envConfig from "@/config/envConfig";
 import axios from "axios";
-import { cookies } from "next/headers";
+
+import envConfig from "@/config/envConfig";
 
 const axiosInstance = axios.create({
   baseURL: envConfig.baseApi,

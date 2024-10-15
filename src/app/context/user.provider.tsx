@@ -1,4 +1,5 @@
-import { getCurrentUser } from "@/services/AuthService";
+"use client"
+
 import {
   createContext,
   Dispatch,
@@ -8,6 +9,9 @@ import {
   useEffect,
   useState,
 } from "react";
+
+import { useGetUserDetails } from "@/hooks/auth.hook";
+import { getCurrentUser } from "@/services/AuthService";
 
 export interface IUser {
   userId: string;
@@ -23,6 +27,7 @@ const UserContext = createContext<IUserProviderValues | undefined>(undefined);
 interface IUserProviderValues {
   user: IUser | null;
   isLoading: boolean;
+  userDetails: any; // Update according to your user details structure
   setUser: (user: IUser | null) => void;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
 }
@@ -30,22 +35,41 @@ interface IUserProviderValues {
 const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [userDetails, setUserDetails] = useState<any>(null); // Update according to your structure
 
-  const handleUser = async () => {
-    const user = await getCurrentUser();
-    // console.log(user);
-
-    setUser(user);
-    setIsLoading(false);
-  };
-
+  // Fetch current user on mount
   useEffect(() => {
+    const handleUser = async () => {
+      const currentUser = await getCurrentUser();
+
+      setUser(currentUser);
+
+      setIsLoading(false);
+    };
+
     handleUser();
-  }, [isLoading]);
+  }, []);
+
+  // Use the hook to fetch user details
+  const {
+    data: userDetailData,
+    error,
+    isLoading: userDetailsLoading,
+  } = useGetUserDetails(user?.userId || "");
+
+  // Set user details when fetched
+  useEffect(() => {
+    if (userDetailData) {
+      setUserDetails(userDetailData);
+    }
+  }, [userDetailData]);
+
+  //   console.log(userDetailData);
 
   const userInfo = {
     user,
-    isLoading,
+    isLoading: isLoading || userDetailsLoading,
+    userDetails,
     setIsLoading,
     setUser,
   };
@@ -59,7 +83,7 @@ export const useUser = () => {
   const context = useContext(UserContext);
 
   if (context === undefined) {
-    throw new Error("use user must be used within the user provider context");
+    throw new Error("useUser must be used within the UserProvider context");
   }
 
   return context;
