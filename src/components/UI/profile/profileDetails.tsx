@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import {
@@ -14,21 +14,10 @@ import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 import bgImage from "@/assets/profile/post/4.jpg";
 import { useUser } from "@/app/context/user.provider";
 
-const ProfileDetails = () => {
-
-  // const  {userDetailData}=useUser();
-
-  // console.log(userDetailData);
-  
-  // const userData=userDetails?.data;
+const ProfileDetails = ({ userData }: any) => {
   // console.log(userData);
 
-  const {userDetails}=useUser();
-  
-
-  
-   
-
+  const { fullName } = userData || "";
 
   return (
     <div>
@@ -56,7 +45,7 @@ const ProfileDetails = () => {
             </div>
             <div className=" mt-10">
               <h1 className="text-xl font-semibold flex gap-2 items-center justify-center">
-                Jewel Rana{" "}
+                {fullName}
                 <span className="  ">
                   <FaCheck className="mt-1 bg-green-600 text-md rounded-full p-1" />{" "}
                 </span>
@@ -110,12 +99,12 @@ const ProfileDetails = () => {
 
       <div className="bg-black px-4">
         <div className="text-gray-400 font-semibold  flex gap-4 py-4 lex flex-wrap justify-center md:justify-start">
-          <Link href="/userProfile/215/feed">Feed </Link>
-          <Link href="/userProfile/media">Media </Link>
-          <Link href="/userProfile/connections">Videos </Link>
+          <Link href="/profile/feed">Feed </Link>
+          <Link href="/profile/media">Media </Link>
+          {/* <Link href="/userProfile/connections">Videos </Link>
           <Link href="/userProfile/about">About </Link>
           <Link href="/userProfile">Connections </Link>
-          <Link href="/userProfile">Activity </Link>
+          <Link href="/userProfile">Activity </Link> */}
         </div>
       </div>
     </div>

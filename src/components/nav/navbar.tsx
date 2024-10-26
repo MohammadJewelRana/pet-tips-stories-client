@@ -21,7 +21,7 @@ import {
   SearchIcon,
 } from "../icons";
 
-import { ThemeSwitch } from "../theme-switch";
+// import { ThemeSwitch } from "../theme-switch";
 import { siteConfig } from "@/config/site";
 import Log from "./log";
  
@@ -56,7 +56,7 @@ export const Navbar = () => {
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Logo />
-            <p className="font-bold text-inherit">ACME</p>
+            <p className="font-bold text-inherit">pet <span className="text-yellow-400 -ml-1">Tips</span></p>
           </NextLink>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-4 justify-start ml-2">
@@ -114,7 +114,7 @@ export const Navbar = () => {
         <Link isExternal aria-label="Github" href={siteConfig.links.github}>
           <GithubIcon className="text-default-500" />
         </Link>
-        <ThemeSwitch />
+        {/* <ThemeSwitch /> */}
         <NavbarMenuToggle />
       </NavbarContent>
 

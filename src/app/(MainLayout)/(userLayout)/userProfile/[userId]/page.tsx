@@ -7,9 +7,9 @@ const page = ({params}) => {
     return (
         <div>
             <ProfileDetails/>
-            {/* post : {params.userId} */}
+            post : {params.userId}
 
-            {/* <Feed/> */}
+            <Feed/>
 
         </div>
     );

@@ -1,11 +1,9 @@
-import TextEditor from "@/components/textEditor/TextEditor";
-
- 
+import React from 'react';
 
 const page = () => {
     return (
         <div>
-          <TextEditor/>
+            media
         </div>
     );
 };

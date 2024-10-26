@@ -20,6 +20,7 @@ import img1 from "@/assets/profile/post/1.jpg";
 import img2 from "@/assets/profile/post/2.jpg";
 import img3 from "@/assets/profile/post/3.jpg";
 import ImageGallery from "./ImageGallery";
+import Link from "next/link";
 
 const PostCard = ({ post }: { post: any }) => {
   // const { id, name, photoArray, likes, share, details } = post || undefined;
@@ -57,13 +58,15 @@ const PostCard = ({ post }: { post: any }) => {
         <div className="flex  justify-between  items-center gap-2   ">
           <div className="flex   items-center justify-center  gap-4 ">
             <div>
-              <Image
+            <Link href={`/profile/${userInfo?._id}`}>
+            <Image
                 alt="profile image"
                 className="rounded-full h-12 w-12 border-2 border-blue-500 p-1"
                 height={200}
                 src={userInfo?.profileImage}
                 width={200}
               />
+            </Link>
             </div>
             <div className="">
               <div className="flex">

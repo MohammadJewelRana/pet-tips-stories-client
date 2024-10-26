@@ -1,11 +1,11 @@
-import TextEditor from "@/components/textEditor/TextEditor";
+import DetailsPage from "./details/page";
 
  
 
 const page = () => {
     return (
         <div>
-          <TextEditor/>
+            {/* <DetailsPage/> */}
         </div>
     );
 };

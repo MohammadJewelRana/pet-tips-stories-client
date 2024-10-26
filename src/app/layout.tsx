@@ -3,9 +3,9 @@ import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 
 import { Providers } from "./providers";
-
+import { fontSans } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
-
+import clsx from "clsx";
 
 
 export const metadata: Metadata = {
@@ -35,13 +35,13 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en">
       <head />
       <body
-        // className={clsx(
-        //   "min-h-screen  bg-[#191A1F]   font-sans antialiased",
-        //   fontSans.variable
-        // )}
-        className="bg-[#191A1F] h-screen z-10  "
+        className={clsx(
+          "     font-sans antialiased",
+          fontSans.variable
+        )}
+        // className="bg-[#191A1F]      "
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+        <Providers themeProps={{ attribute: "class", defaultTheme: "" }}>
         
           {children}
           
