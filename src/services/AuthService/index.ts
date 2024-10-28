@@ -67,20 +67,12 @@ export const getCurrentUser = async () => {
   return decodedToken;
 };
 
-
-//get full user details
-export const getUserDetails = async (id: string) => {
- 
-  if (!id) {
-    throw new Error("User ID is missing");
+export const getSingleUserById = async (id: string) => {
+  try {
+    const { data } = await axiosInstance.get(`/user/${id}`);
+    return data?.data;
+  } catch (error: any) {
+    console.log(error.response.data.message);
+    throw new Error(error.response.data.message);
   }
-  
-  // const res = await fetch(`${envConfig.baseApi}/user/${id}`);
-  const res = await fetch(`http://localhost:5000/api/user/${id}`);
-
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
 };

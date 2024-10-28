@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   createContext,
@@ -10,7 +10,7 @@ import {
   useState,
 } from "react";
 
-import { useGetUserDetails } from "@/hooks/auth.hook";
+import { useGetSingleUserDetails } from "@/hooks/auth.hook";
 import { getCurrentUser } from "@/services/AuthService";
 
 export interface IUser {
@@ -27,58 +27,44 @@ const UserContext = createContext<IUserProviderValues | undefined>(undefined);
 interface IUserProviderValues {
   user: IUser | null;
   isLoading: boolean;
-  userDetails: any; // Update according to your user details structure
+  userDetails: any; // Update this to match the actual type of user details
   setUser: (user: IUser | null) => void;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 const UserProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<IUser | undefined>(undefined);
+  const [user, setUser] = useState<IUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [userDetails, setUserDetails] = useState<any>(null);  
+  const [userDetails, setUserDetails] = useState<any>(null); // Adjust type if necessary
 
   // Fetch current user on mount
   useEffect(() => {
     const handleUser = async () => {
-      const currentUser = await getCurrentUser() || undefined;
-
+      const currentUser = (await getCurrentUser()) || null;
       setUser(currentUser);
-
       setIsLoading(false);
     };
-
     handleUser();
   }, []);
 
-  // Use the hook to fetch user details
-  const {
-    data: userDetailData,
-    error,
-    isLoading: userDetailsLoading,
-  } = useGetUserDetails(user?.userId || "");
-  // console.log(user?.userId);
-  
-  // console.log(userDetailData);
-  
+  // Fetch user details whenever `user` changes
+  const { data: fetchedUserDetails, isLoading: userDetailsLoading, isError, error } =
+    useGetSingleUserDetails(user?.userId as string);
 
-  // Set user details when fetched
   useEffect(() => {
-    if (userDetailData) {
-      setUserDetails(userDetailData);
+    if (fetchedUserDetails) {
+      setUserDetails(fetchedUserDetails);
+    } else if (isError) {
+      console.error("Error fetching user details:", error);
     }
-  }, [userDetailData]);
-
-    // console.log(userDetailData);
-    // console.log(userDetails);
-    
+  }, [fetchedUserDetails, isError, error]);
 
   const userInfo = {
     user,
     isLoading: isLoading || userDetailsLoading,
-    userDetails,
     setIsLoading,
     setUser,
-    userDetailData
+    userDetails,
   };
 
   return (

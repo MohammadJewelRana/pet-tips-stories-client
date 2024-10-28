@@ -3,7 +3,8 @@ import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 
 import {
-  getUserDetails,
+  getSingleUserById,
+ 
   loginUser,
   registerUser,
 } from "@/services/AuthService";
@@ -33,14 +34,12 @@ export const useUserLogin = () => {
     },
   });
 };
+ 
 
-export const useGetUserDetails = (id: string) => {
-  // if (!id) {
-  //   throw new Error("User ID is missing");
-  // }
-
+export const useGetSingleUserDetails = (id: string) => {
   return useQuery({
-    queryKey: ["GET_USER_DETAILS"],
-    queryFn: async () => await getUserDetails(id),
+    queryKey: ["GET_SINGLE_USER", id],
+    queryFn: async () => await getSingleUserById(id),
+    enabled: !!id,
   });
 };

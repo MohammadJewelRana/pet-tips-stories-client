@@ -39,9 +39,9 @@ const PostCard = ({ post }: { post: any }) => {
   } = post || undefined;
   // console.log(post);
   // const { email, fullName } = userInfo || undefined;
-  console.log(userInfo);
+  // console.log(userInfo);
 
-  const { upVote, downVote } = vote[0];
+  const { upVote, downVote } = vote[0] || '0';
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -51,9 +51,9 @@ const PostCard = ({ post }: { post: any }) => {
 
   return (
     <div>
-      <Divider />
+ 
 
-      <div className="bg-black px-4 py-4  ">
+      <div className="bg-slate-900 rounded-md px-4 py-4  ">
         {/* upper  */}
         <div className="flex  justify-between  items-center gap-2   ">
           <div className="flex   items-center justify-center  gap-4 ">
@@ -173,6 +173,7 @@ const PostCard = ({ post }: { post: any }) => {
           </div>
         </div>
       </div>
+      <Divider />
     </div>
   );
 };

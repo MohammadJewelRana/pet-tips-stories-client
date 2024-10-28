@@ -26,14 +26,14 @@ const CustomModal = ({
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const backdrops = ["blur"];
+ 
 
   return (
     <div>
       <div className="flex items-center">
         {icon}
         <Button
-          key={backdrops[0]}
+          key={'blur'}
           onPress={() => onOpen()}
           // className="capitalize"
           className={`${css} -ml-2 -z-[10px]  capitalize`}
@@ -42,7 +42,7 @@ const CustomModal = ({
         </Button>
       </div>
 
-      <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
+      <Modal backdrop="blur" isOpen={isOpen} size='3xl' onClose={onClose}>
         <ModalContent>
           {(onClose) => (
             <>
