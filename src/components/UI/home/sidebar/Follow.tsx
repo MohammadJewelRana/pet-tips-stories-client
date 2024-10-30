@@ -4,8 +4,10 @@ import { FaEye, FaPlus, FaUserPlus } from "react-icons/fa";
 import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 
 const Follow = ({ followData, title, status }:{followData:[],title:string,status:string}) => {
+  const statusNew=true;
+
   return (
-    <div className="bg-black p-4">
+    <div className=" p-4">
       <div>
         <h1 className="text-2xl font-bold capitalize mt-4 mb-8">{title}</h1>
       </div>
@@ -26,9 +28,9 @@ const Follow = ({ followData, title, status }:{followData:[],title:string,status
                 </div>
 
                 <div className="capitalize">
-                  <h1 className="text-[16px] font-semibold  ">{item?.name}</h1>
+                  <h1 className="text-[16px] font-semibold  ">{'Jewel'}</h1>
                   <p className="text-[12px] text-gray-400">
-                    {item?.profession}
+                    {'WEb'}
                   </p>
                 </div>
               </div>
@@ -44,7 +46,7 @@ const Follow = ({ followData, title, status }:{followData:[],title:string,status
                 </>
               ) : (
                 <>
-                  {item?.followingStatus === true ? (
+                  {statusNew  === true ? (
                     <div
                       className="text-md bg-blue-600 text-white p-2 rounded-full cursor-pointer"
                       title="UnFollow"

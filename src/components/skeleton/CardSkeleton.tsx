@@ -5,7 +5,7 @@ const CardSkeleton = () => {
     <div>
       {[...Array(4)].map((_, index) => (
         <div key={index} className="mb-12">
-          <div className="bg-black px-4 py-4">
+          <div className="bg-slate-900 px-4 py-4">
             {/* Upper section */}
             <div className="flex justify-between items-center gap-2">
               <div className="flex items-center gap-4">

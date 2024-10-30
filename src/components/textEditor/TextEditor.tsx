@@ -10,7 +10,7 @@ import Loading from "../UI/Loading";
 
 const TextEditor = () => {
 
-  const {userDetails,userDetailsLoading}=useUser();
+  const {userDetails}=useUser();
   // console.log(userDetails);
   
 

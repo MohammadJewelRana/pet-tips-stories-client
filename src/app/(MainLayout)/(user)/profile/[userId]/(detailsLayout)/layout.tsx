@@ -6,10 +6,9 @@ import Sidebar from "@/components/UI/profile/sidebar/Sidebar";
 
 const layout = ({
   children,
-  feed,
 }: {
   children: ReactNode;
-  feed: ReactNode;
+  // feed: ReactNode;
 }) => {
   return (
     <Container>

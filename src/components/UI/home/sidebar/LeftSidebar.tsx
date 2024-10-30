@@ -18,6 +18,11 @@ import { useUser } from "@/app/context/user.provider";
 import Loading from "../../Loading";
 
 const LeftSideBar = () => {
+
+  const {userDetails}=useUser();
+  console.log(userDetails);
+  
+
   const links = [
     { id: 1, icon: <FaHome />, value: "Profile", path: "/profile" },
     {
@@ -52,14 +57,14 @@ const LeftSideBar = () => {
     },
   ];
 
-  const { user,isLoading } = useUser();
+  
 
-  if(isLoading){
-    return <Loading/>
-  }
+  // if(isLoading){
+  //   return <Loading/>
+  // }
 
   return (
-    <div>
+    <div className="bg-slate-900 p-4">
       <div className="  ">
         <Image
           alt="profile"
@@ -80,7 +85,7 @@ const LeftSideBar = () => {
           />
         </div>
         <div className="text-center">
-          <h1 className="text-2xl font-bold">Md Jewel Rana</h1>
+          <h1 className="text-2xl font-bold">{userDetails?.fullName}</h1>
           <p className="text-[16px] text-gray-400 my-2">Web developer</p>
         </div>
 
@@ -118,7 +123,7 @@ const LeftSideBar = () => {
       {/* all link  */}
       <div className="my-8">
         {links?.map((item, index) => (
-          <Link key={index} href={`/profile/${user?.userId}/details/feed`}>  
+          <Link key={index} href={`/profile/${userDetails?._id}/details/feed`}>  
           {/* <Link key={index} href={`${item?.path}/${user?.userId}`}> */}
             <div className="flex gap-4 mb-4 text-xl  font-bold  cursor-pointer hover:bg-blue-600 duration-300 hover:transition-all p-2">
               <p className="mt-1">{item?.icon}</p>

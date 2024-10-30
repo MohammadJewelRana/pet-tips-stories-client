@@ -38,18 +38,24 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
   const [userDetails, setUserDetails] = useState<any>(null); // Adjust type if necessary
 
   // Fetch current user on mount
+  const handleUser = async () => {
+    const currentUser = (await getCurrentUser()) || null;
+    setUser(currentUser);
+
+    setIsLoading(false);
+  };
+
   useEffect(() => {
-    const handleUser = async () => {
-      const currentUser = (await getCurrentUser()) || null;
-      setUser(currentUser);
-      setIsLoading(false);
-    };
     handleUser();
-  }, []);
+  }, [isLoading]);
 
   // Fetch user details whenever `user` changes
-  const { data: fetchedUserDetails, isLoading: userDetailsLoading, isError, error } =
-    useGetSingleUserDetails(user?.userId as string);
+  const {
+    data: fetchedUserDetails,
+    isLoading: userDetailsLoading,
+    isError,
+    error,
+  } = useGetSingleUserDetails(user?.userId as string);
 
   useEffect(() => {
     if (fetchedUserDetails) {

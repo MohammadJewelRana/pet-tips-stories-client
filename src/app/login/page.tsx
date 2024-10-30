@@ -4,7 +4,7 @@
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
 import { useUser } from "../context/user.provider";
@@ -16,14 +16,14 @@ import Loading from "@/components/UI/Loading";
 
 const page = () => {
   const { mutate: handleLoginUser, isPending, isSuccess } = useUserLogin();
-  
+
   const { setIsLoading: userLoading } = useUser();
 
   const searchParams = useSearchParams();
   const redirect = searchParams.get("redirect"); //get redirect path
 
   console.log(redirect);
-  
+
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -32,16 +32,14 @@ const page = () => {
     handleLoginUser(data);
 
     userLoading(true);
- 
   };
 
-  if (!isPending && isSuccess) {
-    if (redirect) {
-      router.push(redirect);
-    } else {
-      router.push("/");
+  useEffect(() => {
+    if (!isPending && isSuccess) {
+      router.push(redirect || "/");
     }
-  }
+  }, [isPending, isSuccess, redirect, router]);
+  
 
   return (
     <>

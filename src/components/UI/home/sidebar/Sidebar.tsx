@@ -2,6 +2,7 @@ import Follow from "./Follow";
 
 import profileImage from "@/assets/profile/profilePicture/dp.jpg";
 
+ 
 
 const Sidebar = () => {
   const followData = [
@@ -57,8 +58,8 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="bg-black p-4">
-      <div className="mt-4">
+    <div className="  ">
+      <div className=" bg-slate-900 rounded-md">
         <Follow
           followData={followData}
           status={"following"}
@@ -66,30 +67,16 @@ const Sidebar = () => {
         />
       </div>
 
-      <Follow
+ <div className="mt-8 bg-slate-900 rounded-md">
+ <Follow
         followData={followData}
         status={"followers"}
         title={"Followers"}
       />
+ </div>
     </div>
   );
 };
 
 export default Sidebar;
-
-// import Follow from "./Follow";
-// import Followers from "./Followers";
-
-// const Sidebar = () => {
-//   return (
-//     <div className="bg-black p-4">
-//       <div className="mt-4">
-//         <Follow />
-//       </div>
-
-//       <Followers />
-//     </div>
-//   );
-// };
-
-// export default Sidebar;
+ 

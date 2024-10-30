@@ -57,3 +57,13 @@ export const getAllSinglePost = async (id: string) => {
 
   return res.json();
 };
+
+export const updatePostById = async (id: string, updatedData: any) => {
+  try {
+    const { data } = await axiosInstance.patch(`/post/${id}`, updatedData);
+    return data;
+  } catch (error: any) {
+    console.log(error.response.data.message);
+    throw new Error(error.response.data.message);
+  }
+};

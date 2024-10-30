@@ -17,7 +17,7 @@ const layout = ({ children,feed }: { children: ReactNode ,feed:ReactNode}) => {
         {children}
         {feed}</div>
         <div className="  md:w-2/5  ">
-          <Sidebar />
+          <Sidebar />  
         </div>
       </div>
     </Container>

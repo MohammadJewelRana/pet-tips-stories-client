@@ -1,4 +1,4 @@
-import DetailsPage from "./details/page";
+ 
 
  
 

@@ -51,7 +51,7 @@ const Profile = () => {
   ];
 
   return (
-    <div>
+    <div className="bg-slate-900">
       <div className="  ">
         <Image
           alt="profile"

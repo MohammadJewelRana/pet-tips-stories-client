@@ -32,7 +32,7 @@ const StatusModal = async ({
   className: string;
   icon?: ReactNode;
 }) => {
-  const { userDetails, userDetailsLoading } = useUser();
+  const { userDetails } = useUser();
   // console.log(userDetails);
 
   const { mutate: handleCreatePost, isPending, isSuccess } = useCreatePost();
@@ -99,14 +99,12 @@ const StatusModal = async ({
     if (!data?.pricing) {
       data.pricing = null;
     }
-   
 
     let uploadedImages: string[] = [];
 
-    if(selectedImages.length>0){
+    if (selectedImages.length > 0) {
       uploadedImages = await imgbbUpload(selectedImages);
-    }  
-
+    }
 
     const postData = {
       ...data,

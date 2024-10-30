@@ -1,6 +1,11 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { createPost, getAllPost, getAllSinglePost } from "@/services/post";
+import {
+  createPost,
+  getAllPost,
+  getAllSinglePost,
+  updatePostById,
+} from "@/services/post";
 import { toast } from "sonner";
 import { FieldValues } from "react-hook-form";
 
@@ -26,6 +31,21 @@ export const useCreatePost = () => {
       toast.success("Post creating successful.");
     },
     onError: (error: any) => {
+      toast.error(error.message);
+    },
+  });
+};
+
+export const useUpdatePost = (postId: string) => {
+  return useMutation<any, Error, FieldValues>({
+    mutationKey: ["UPDATE_POST", postId],
+    mutationFn: async (updatedData) =>
+      await updatePostById(postId, updatedData),
+    onSuccess: () => {
+      toast.success("Post update successful.");
+    },
+    onError: (error) => {
+      console.log(error, "update error");
       toast.error(error.message);
     },
   });

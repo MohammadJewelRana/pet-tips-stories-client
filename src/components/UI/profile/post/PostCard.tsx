@@ -41,7 +41,7 @@ const PostCard = ({ post }: { post: any }) => {
   // const { email, fullName } = userInfo || undefined;
   // console.log(userInfo);
 
-  const { upVote, downVote } = vote[0] || '0';
+  const { upVote, downVote } = vote[0] || "0";
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -49,24 +49,31 @@ const PostCard = ({ post }: { post: any }) => {
     setIsExpanded(!isExpanded);
   };
 
+  const handleUpdate = (userId: string, updatedData: string) => {
+    console.log(userId, updatedData);
+    const updatedNewData={
+      userId,
+      updatedData
+    }
+
+  };
+
   return (
     <div>
- 
-
       <div className="bg-slate-900 rounded-md px-4 py-4  ">
         {/* upper  */}
         <div className="flex  justify-between  items-center gap-2   ">
           <div className="flex   items-center justify-center  gap-4 ">
             <div>
-            <Link href={`/profile/${userInfo?._id}`}>
-            <Image
-                alt="profile image"
-                className="rounded-full h-12 w-12 border-2 border-blue-500 p-1"
-                height={200}
-                src={userInfo?.profileImage}
-                width={200}
-              />
-            </Link>
+              <Link href={`/profile/${userInfo?._id}`}>
+                <Image
+                  alt="profile image"
+                  className="rounded-full h-12 w-12 border-2 border-blue-500 p-1"
+                  height={200}
+                  src={userInfo?.profileImage}
+                  width={200}
+                />
+              </Link>
             </div>
             <div className="">
               <div className="flex">
@@ -77,8 +84,13 @@ const PostCard = ({ post }: { post: any }) => {
                   9 hour ago
                 </p>
               </div>
-              <div className="  w-16 text-center rounded-md text-[14px] mt-1 px-4 bg-red-400 opacity-85">
-                <span className="text-white ">{category}</span>
+              <div className="w-4/5 flex gap-4    text-center rounded-md text-[12px] mt-1  opacity-85">
+                <span className="text-white bg-slate-700 px-2 py-1 rounded-md">
+                  {category}
+                </span>
+                <span className="text-white bg-blue-500 px-2 py-1 rounded-md">
+                  {"public"}
+                </span>
               </div>
             </div>
           </div>
@@ -125,14 +137,28 @@ const PostCard = ({ post }: { post: any }) => {
         {/* like comment share  */}
         <div className="flex justify-between items-center gap-4 text-gray-400 text-[14px] my-4 flex-wrap">
           <div className="flex items-center gap-6 flex-1 overflow-hidden whitespace-nowrap">
-            <div className="flex items-center text-blue-600">
-              <FaThumbsUp className="text-gray-500" />
-              <span className="ml-1"> ({upVote?.length})</span>
-            </div>
-            <div className="flex items-center text-blue-600">
-              <FaThumbsDown className="text-gray-500" />
-              <span className="ml-1"> ({downVote?.length})</span>
-            </div>
+            <button onClick={() => handleUpdate(userInfo?._id, "like")}>
+              <div
+                className="flex items-center text-blue-600 cursor-pointer"
+                onClick={() => handleUpdate(userInfo?._id, "upVote")}
+              >
+                <FaThumbsUp className="text-gray-500" />
+                <span className="ml-1 text-gray-500"> ({upVote?.length})</span>
+              </div>
+            </button>
+
+            <button onClick={() => handleUpdate(userInfo?._id, "dislike")}>
+              <div
+                className="flex items-center text-blue-600 cursor-pointer"
+                onClick={() => handleUpdate(userInfo?._id, "downVote")}
+              >
+                <FaThumbsDown className="text-gray-500" />
+                <span className="ml-1 text-gray-500">
+                  {" "}
+                  ({downVote?.length})
+                </span>
+              </div>
+            </button>
 
             <div className="flex items-center">
               <FaComment className="text-gray-500" />
