@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+/* eslint-disable react/jsx-no-undef */
 "use client";
 
 import React from "react";
@@ -7,6 +9,11 @@ import { usePathname, useRouter } from "next/navigation";
 
 import { useUser } from "@/app/context/user.provider";
 import { logout } from "@/services/AuthService";
+
+import img from "@/assets/profile/profilePicture/dp.jpg";
+import Image from "next/image";
+import { NavbarContent } from "@nextui-org/navbar";
+import NavbarDropdown from "./NavbarDropDown";
 
 const Log = () => {
   const router = useRouter();
@@ -18,24 +25,21 @@ const Log = () => {
   const handleLogout = () => {
     logout();
     // userLoading(true);
-    router.push('/login');
+    router.push("/login");
     toast("Successfully Logged out!!");
-
-    // if (protectedRoutes.some((route) => pathname.match(route))) {
-    //     router.push("/");
-    //   }
   };
 
   return (
     <div>
       {user ? (
         <>
-          <button
+          {/* <button
             className="px-4 bg-slate-800 py-2 rounded-md hover:bg-slate-600 duration-300 "
             onClick={() => handleLogout()}
           >
             Logout
-          </button>
+          </button> */}
+          <NavbarDropdown/>
         </>
       ) : (
         <>
@@ -48,6 +52,27 @@ const Log = () => {
         </>
       )}
     </div>
+    // <div>
+    //   {user ? (
+    //     <>
+    //       <button
+    //         className="px-4 bg-slate-800 py-2 rounded-md hover:bg-slate-600 duration-300 "
+    //         onClick={() => handleLogout()}
+    //       >
+    //         Logout
+    //       </button>
+    //     </>
+    //   ) : (
+    //     <>
+    //       <Link href={"/login"}>
+    //         {" "}
+    //         <button className="px-4 bg-slate-800 py-2 rounded-md hover:bg-slate-600 duration-300 ">
+    //           Login
+    //         </button>
+    //       </Link>
+    //     </>
+    //   )}
+    // </div>
   );
 };
 
